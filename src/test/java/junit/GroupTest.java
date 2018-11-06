@@ -1,10 +1,12 @@
 
 package junit;
 
+import com.qq.weixin.api.GroupApi;
 import com.qq.weixin.mappings.Group;
 import com.qq.weixin.mappings.Status;
 import org.junit.Test;
 
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -12,33 +14,33 @@ import java.util.List;
  */
 public class GroupTest extends BaseTest {
 
+
     @Test
-    public void test0(){
+    public void test0() {
         System.out.println("s");
     }
 
     @Test
-    public void groups(){
-
-        List<Group> groups = engine.getGroupService(accessToken).groups();
+    public void groups() throws IOException {
+        List<Group> groups = engine.proxy(GroupApi.class).groups(accessToken).execute().body();
         System.out.println(groups.toString());
     }
 
     @Test
-    public void create(){
-        Group group = engine.getGroupService(accessToken).create("ddd");
+    public void create() throws IOException {
+        Group group = engine.proxy(GroupApi.class).create("ddd3333", accessToken).execute().body();
         System.out.println(group);
     }
 
     @Test
-    public void update(){
-        Status update = engine.getGroupService(accessToken).update(new Group(100, "123321123321"));
+    public void update() throws IOException {
+        Status update = engine.proxy(GroupApi.class).update(new Group(100, "123321123321"), accessToken).execute().body();
         System.out.println(update);
     }
 
     @Test
-    public void delete(){
-        Status delete = engine.getGroupService(accessToken).delete(106);
+    public void delete() throws IOException {
+        Status delete = engine.proxy(GroupApi.class).delete(106, accessToken).execute().body();
         System.out.println(delete);
     }
 

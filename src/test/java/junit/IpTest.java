@@ -1,8 +1,10 @@
 
 package junit;
 
+import com.qq.weixin.api.IpApi;
 import org.junit.Test;
 
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -11,9 +13,9 @@ import java.util.List;
 public class IpTest extends BaseTest {
 
     @Test
-    public void getCallBackIps(){
+    public void getCallBackIps() throws IOException {
 
-        List<String> callBackIps = engine.getIpService(accessToken).getCallBackIps();
+        List<String> callBackIps = engine.proxy(IpApi.class).getCallBackIps(accessToken).execute().body();
         System.out.println(callBackIps);
     }
 }

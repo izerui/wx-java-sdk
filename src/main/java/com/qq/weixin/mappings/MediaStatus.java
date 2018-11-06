@@ -42,6 +42,7 @@ public class MediaStatus implements Serializable {
 
     @Override
     public String toString() {
-        return String.format("MediaStatus[type:%s,mediaId=%s,createdAt=%s]",type,mediaId,createdAt);
+        return String.format("MediaStatus[type:%s,mediaId=%s,createdAt=%s]", type, mediaId, createdAt);
     }
+
 }

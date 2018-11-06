@@ -1,6 +1,10 @@
 
 package com.qq.weixin.mappings;
 
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
+
 import java.io.Serializable;
 
 /**
@@ -9,16 +13,17 @@ import java.io.Serializable;
 public class Media implements Serializable {
 
     private String fileName;
-    private Type type;
+    private String type;
     private byte[] data;
     private String title;
     private String introduction;
 
 
-    private Media(){
+    private Media() {
 
     }
-    private Media(String fileName, Type type, byte[] data) {
+
+    private Media(String fileName, String type, byte[] data) {
         this.fileName = fileName;
         this.type = type;
         this.data = data;
@@ -29,22 +34,22 @@ public class Media implements Serializable {
         this.title = title;
         this.introduction = introduction;
         this.data = data;
-        this.type = Type.video;
+        this.type = "video";
     }
 
-    public static Media image(String fileName, byte[] data){
-        return new Media(fileName,Type.image,data);
+    public static Media image(String fileName, byte[] data) {
+        return new Media(fileName, "image", data);
     }
 
-    public static Media voice(String fileName,byte[] data){
-        return new Media(fileName,Type.voice,data);
+    public static Media voice(String fileName, byte[] data) {
+        return new Media(fileName, "voice", data);
     }
 
-    public static Media thumb(String fileName,byte[] data){
-        return new Media(fileName,Type.thumb,data);
+    public static Media thumb(String fileName, byte[] data) {
+        return new Media(fileName, "thumb", data);
     }
 
-    public static Media video(String fileName,String title,String introduction , byte[] data){
+    public static Media video(String fileName, String title, String introduction, byte[] data) {
         return new Media(fileName, title, introduction, data);
     }
 
@@ -57,11 +62,11 @@ public class Media implements Serializable {
         this.fileName = fileName;
     }
 
-    public Type getType() {
+    public String getType() {
         return type;
     }
 
-    public void setType(Type type) {
+    public void setType(String type) {
         this.type = type;
     }
 
@@ -89,7 +94,21 @@ public class Media implements Serializable {
         this.introduction = introduction;
     }
 
-    public enum Type{
-        image,voice,video,thumb;
+
+    public MultipartBody build() {
+        MultipartBody.Builder builder = new MultipartBody.Builder();
+
+        builder.addFormDataPart("media", this.getFileName(), RequestBody.create(MediaType.parse("application/octet-stream"), this.getData()))
+                .addPart(RequestBody.create(MediaType.parse("text/plain"), String.valueOf(this.getData().length)));
+
+        if (this.getType().equals("video")) {
+            builder.addFormDataPart("description",
+                    String.format("{\"title\":\"%s\",\"introduction\":\"%s\"}",
+                            this.getTitle(), this.getIntroduction()));
+        }
+
+        builder.setType(MultipartBody.FORM);
+        return builder.build();
     }
+
 }

@@ -1,6 +1,7 @@
 
 package junit;
 
+import com.qq.weixin.api.MenuApi;
 import com.qq.weixin.mappings.Button;
 import com.qq.weixin.mappings.Menu;
 import com.qq.weixin.mappings.Status;
@@ -26,19 +27,19 @@ public class MenuTest extends BaseTest {
         button.setKey("jsjdf");
         buttons.add(button);
 
-        Status status = engine.getMenuService(accessToken).create(buttons);
+        Status status = engine.proxy(MenuApi.class).create(buttons,accessToken).execute().body();
         System.out.println(status.getErrMsg());
     }
 
     @Test
-    public void get(){
-        List<Menu> buttons = engine.getMenuService(accessToken).get();
+    public void get() throws IOException {
+        List<Menu> buttons = engine.proxy(MenuApi.class).get(accessToken).execute().body();
         System.out.println(buttons);
     }
 
     @Test
-    public void delete(){
-        Status delete = engine.getMenuService(accessToken).delete();
+    public void delete() throws IOException {
+        Status delete = engine.proxy(MenuApi.class).delete(accessToken).execute().body();
         System.out.println(delete);
     }
 

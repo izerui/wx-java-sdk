@@ -2,7 +2,7 @@ package com.qq.weixin.api;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.qq.weixin.converter.Converter;
-import com.qq.weixin.converter.JacksonConverter;
+import com.qq.weixin.converter.DefaultConverter;
 import com.qq.weixin.mappings.Message;
 import com.qq.weixin.mappings.Status;
 import retrofit2.Call;
@@ -23,11 +23,11 @@ public interface MessageApi {
     Call<Status> send(@Body Message message, @Query("access_token") String accessToken);
 
 
-    class SendConverter extends JacksonConverter<Message,Status> {
+    class SendConverter extends DefaultConverter<Message,Status> {
 
         @Override
         public byte[] request(ObjectMapper mapper, Type type, Message message) throws IOException {
-            return message.toJson().getBytes(CHARSET_UTF8);
+            return message.toJson().getBytes(charSetEncoding);
         }
     }
 

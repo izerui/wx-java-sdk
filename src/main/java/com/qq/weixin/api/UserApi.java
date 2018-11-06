@@ -2,7 +2,7 @@ package com.qq.weixin.api;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.qq.weixin.converter.Converter;
-import com.qq.weixin.converter.JacksonConverter;
+import com.qq.weixin.converter.DefaultConverter;
 import com.qq.weixin.mappings.*;
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -37,7 +37,7 @@ public interface UserApi {
     @GET("user/info")
     Call<UserInfo> userInfo(@Query("openid") String openId, @Query("lang") String lang, @Query("access_token") String accessToken);
 
-    class GetGroupConverter extends JacksonConverter<String, Integer> {
+    class GetGroupConverter extends DefaultConverter<String, Integer> {
 
         @Override
         public Integer response(ObjectMapper mapper, Type type, byte[] response) throws IOException {
@@ -46,7 +46,7 @@ public interface UserApi {
 
         @Override
         public byte[] request(ObjectMapper mapper, Type type, String value) throws IOException {
-            return String.format("{\"openid\":\"%s\"}", value).getBytes(CHARSET_UTF8);
+            return String.format("{\"openid\":\"%s\"}", value).getBytes(charSetEncoding);
         }
     }
 }

@@ -6,28 +6,24 @@ package com.qq.weixin;
  */
 public class WxException extends RuntimeException {
 
-    private int errcode;
+    private String errcode;
 
-    public WxException(int errcode) {
-        this.errcode = errcode;
-    }
-
-    public WxException(int errcode , String message) {
+    public WxException(String errcode, String message) {
         super(message);
         this.errcode = errcode;
     }
 
-    public WxException(int errcode , String message, Throwable cause) {
+    public WxException(String errcode, String message, Throwable cause) {
         super(message, cause);
         this.errcode = errcode;
     }
 
-    public int getErrcode() {
+    public String getErrcode() {
         return errcode;
     }
 
     @Override
     public String toString() {
-        return String.format("WxException[errcode=%s,errmsg=%s]",errcode,getMessage());
+        return String.format("WxException[errcode=%s,errmsg=%s]", errcode, getMessage());
     }
 }

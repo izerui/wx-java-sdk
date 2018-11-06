@@ -9,5 +9,5 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.METHOD)
 public @interface Converter {
-    Class<? extends JacksonConverter> value();
+    Class<? extends DefaultConverter> value();
 }

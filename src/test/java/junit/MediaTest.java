@@ -1,11 +1,13 @@
 
 package junit;
 
+import com.qq.weixin.api.MediaApi;
 import com.qq.weixin.mappings.MaterialStatus;
 import com.qq.weixin.mappings.Media;
 import com.qq.weixin.mappings.MediaStatus;
 import com.qq.weixin.mappings.News;
 import org.junit.Test;
+import retrofit2.http.Url;
 
 import java.io.File;
 import java.io.IOException;
@@ -19,38 +21,38 @@ public class MediaTest extends BaseTest {
 
     @Test
     public void upload() throws IOException {
-        File file = new File("/Users/serv/Documents/11.pic.jpg");
-        Media media = Media.image("11.pic.jpg",Files.readAllBytes(file.toPath()));
-        MediaStatus status = engine.getMediaService(accessToken).upload(media);
+        File file = new File("/www/90-0.jpg");
+        Media media = Media.image("11.pic.jpg", Files.readAllBytes(file.toPath()));
+        MediaStatus status = engine.proxy(MediaApi.class).upload(media.build(), media.getType(), accessToken).execute().body();
         System.out.println(status);
     }
 
     @Test
     public void uploadImg() throws IOException {
-        File file = new File("/Users/serv/Documents/11.pic.jpg");
-        Media media = Media.image("11.pic.jpg",Files.readAllBytes(file.toPath()));
-        String s = engine.getMediaService(accessToken).uploadImg(media);
+        File file = new File("/www/90-0.jpg");
+        Media media = Media.image("11.pic.jpg", Files.readAllBytes(file.toPath()));
+        String s = engine.proxy(MediaApi.class).uploadImg(media.build(),accessToken).execute().body();
         System.out.println(s);
     }
 
 
     @Test
     public void addMaterial() throws IOException {
-        File file = new File("/Users/serv/Documents/11.pic.jpg");
-        Media media = Media.thumb("11.pic.jpg",Files.readAllBytes(file.toPath()));
-        MaterialStatus materialStatus = engine.getMediaService(accessToken).addMaterial(media);
+        File file = new File("/www/90-0.jpg");
+        Media media = Media.thumb("11.pic.jpg", Files.readAllBytes(file.toPath()));
+        MaterialStatus materialStatus = engine.proxy(MediaApi.class).addMaterial(media.build(),accessToken).execute().body();
         System.out.println(materialStatus);
     }
 
 
     @Test
-    public void url(){
-        URL df = engine.getMediaService(accessToken).url("-dJj_0Wo87vQtEXWHj3LT-ga0m5YkVJzIlwXLn_4tTdpH9SZB_hYdLjO1yLu_oP7");
+    public void url() throws IOException {
+        URL df = engine.proxy(MediaApi.class).get("_h_qZqJeDHrZ-2GdgR4tsFGziVrntsefAN_MBZj8PKru4RpFqW4yrQMExpkAisok",accessToken).request().url().url();
         System.out.println(df);
     }
 
     @Test
-    public void addNews(){
+    public void addNews() throws IOException {
         News news = new News(
                 "bootren",
                 "zbgUo6Yw_w0Xc0-IWbsjT2f0mkMEkb-Wb7e07dy0yUM",
@@ -60,7 +62,7 @@ public class MediaTest extends BaseTest {
                 "jdsfjdsjfjdsjf",
                 "http://boot.ren"
         );
-        String s = engine.getMediaService(accessToken).addNewses(News.newses(news));
+        String s = engine.proxy(MediaApi.class).addNewses(News.newses(news),accessToken).execute().body();
         System.out.println(s);
     }
 }

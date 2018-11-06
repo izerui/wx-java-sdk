@@ -82,6 +82,19 @@ public class UserInfo implements Serializable{
     @JsonProperty("groupid")
     private Integer groupId;
 
+    @JsonProperty("tagid_list")
+    private List<Integer> tagidList;
+
+    @JsonProperty("subscribe_scene")
+    private String subscribeScene;
+
+    @JsonProperty("qr_scene")
+    private Integer qrScene;
+
+    @JsonProperty("qr_scene_str")
+    private String qrSceneStr;
+
+
 
     /**
      * 用户特权信息，json 数组，如微信沃卡用户为（chinaunicom）
@@ -221,6 +234,38 @@ public class UserInfo implements Serializable{
 
     public void setGroupId(Integer groupId) {
         this.groupId = groupId;
+    }
+
+    public List<Integer> getTagidList() {
+        return tagidList;
+    }
+
+    public void setTagidList(List<Integer> tagidList) {
+        this.tagidList = tagidList;
+    }
+
+    public String getSubscribeScene() {
+        return subscribeScene;
+    }
+
+    public void setSubscribeScene(String subscribeScene) {
+        this.subscribeScene = subscribeScene;
+    }
+
+    public Integer getQrScene() {
+        return qrScene;
+    }
+
+    public void setQrScene(Integer qrScene) {
+        this.qrScene = qrScene;
+    }
+
+    public String getQrSceneStr() {
+        return qrSceneStr;
+    }
+
+    public void setQrSceneStr(String qrSceneStr) {
+        this.qrSceneStr = qrSceneStr;
     }
 
     @Override

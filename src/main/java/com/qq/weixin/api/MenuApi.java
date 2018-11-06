@@ -4,7 +4,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.type.CollectionType;
 import com.qq.weixin.converter.Converter;
-import com.qq.weixin.converter.JacksonConverter;
+import com.qq.weixin.converter.DefaultConverter;
 import com.qq.weixin.mappings.Button;
 import com.qq.weixin.mappings.Menu;
 import com.qq.weixin.mappings.Status;
@@ -39,7 +39,7 @@ public interface MenuApi {
 
 
 
-    class CreateConverter extends JacksonConverter<List<Button>,Status> {
+    class CreateConverter extends DefaultConverter<List<Button>,Status> {
         @Override
         public byte[] request(ObjectMapper mapper, Type type, List<Button> buttons) throws IOException {
             Map map = new HashMap();
@@ -47,7 +47,7 @@ public interface MenuApi {
             return mapper.writeValueAsBytes(map);
         }
     }
-    class GetConverter extends JacksonConverter<Void,List<Menu>>{
+    class GetConverter extends DefaultConverter<Void,List<Menu>> {
         @Override
         public List<Menu> response(ObjectMapper mapper, Type type, byte[] bytes) throws IOException {
             List<Menu> menus = new ArrayList<>();

@@ -3,7 +3,7 @@ package com.qq.weixin.api;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.type.CollectionType;
 import com.qq.weixin.converter.Converter;
-import com.qq.weixin.converter.JacksonConverter;
+import com.qq.weixin.converter.DefaultConverter;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
@@ -21,11 +21,10 @@ public interface IpApi {
     @Converter(GetCallBackIpsConverter.class)
     Call<List<String>> getCallBackIps(@Query("access_token") String accessToken);
 
-    class GetCallBackIpsConverter extends JacksonConverter<Void,List<String>> {
+    class GetCallBackIpsConverter extends DefaultConverter<Void,List<String>> {
         @Override
         public List<String> response(ObjectMapper mapper, Type type, byte[] response) throws IOException {
-            CollectionType collectionType = mapper.getTypeFactory().constructCollectionType(ArrayList.class, String.class);
-            return mapper.readValue(mapper.readTree(response).path("ip_list").toString(), collectionType);
+            return mapper.readValue(mapper.readTree(response).path("ip_list").toString(), getCollectionType(mapper,String.class));
         }
     }
 }

@@ -1,17 +1,3 @@
-/**
- *          你他妈的想干嘛就干嘛公共许可证
- *               第二版，2004年12月
- *
- * 版权所有(C) 2004 serv<liuyuhua69@gmail.com>
- *
- * 任何人都有复制与发布本协议的原始或修改过的版本的权利。
- * 若本协议被修改，须修改协议名称。
- *
- *          你他妈的想干嘛就干嘛公共许可证
- *              复制、发布和修改条款
- *
- *  0. 你只要他妈的想干嘛就干嘛好了。
- */
 package com.qq.weixin.converter;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -32,39 +18,32 @@ import java.lang.reflect.Type;
  * buffers), you must {@linkplain Retrofit.Builder#addConverterFactory(retrofit2.Converter.Factory) add this
  * instance} last to allow the other converters a chance to see their types.
  */
-public final class JacksonConverterFactory extends retrofit2.Converter.Factory {
-    /** Create an instance using a default {@link ObjectMapper} instance for conversion. */
-    public static JacksonConverterFactory create() {
-        return create(new ObjectMapper());
-    }
+public final class ConverterFactory extends retrofit2.Converter.Factory {
 
-    /** Create an instance using {@code mapper} for conversion. */
-    public static JacksonConverterFactory create(ObjectMapper mapper) {
-        return new JacksonConverterFactory(mapper);
-    }
+    private final ObjectMapper objectMapper;
 
-    private final ObjectMapper mapper;
+    private final DefaultConverter<?, ?> defaultJacksonConverter = new DefaultConverter();
 
-    private final JacksonConverter<?,?> defaultJacksonConverter = new JacksonConverter();
-
-    private JacksonConverterFactory(ObjectMapper mapper) {
-        if (mapper == null) throw new NullPointerException("mapper == null");
-        this.mapper = mapper;
+    public ConverterFactory(ObjectMapper objectMapper) {
+        if (objectMapper == null) {
+            objectMapper = new ObjectMapper();
+        }
+        this.objectMapper = objectMapper;
     }
 
     @Override
     public retrofit2.Converter responseBodyConverter(Type type, Annotation[] annotations,
                                                      Retrofit retrofit) {
-        return new JacksonResponseBodyConverter(type, annotations,mapper);
+        return new JacksonResponseBodyConverter(type, annotations);
     }
 
     @Override
     public retrofit2.Converter requestBodyConverter(Type type,
                                                     Annotation[] parameterAnnotations, Annotation[] methodAnnotations, Retrofit retrofit) {
-        return new JacksonRequestBodyConverter(type, methodAnnotations,mapper);
+        return new JacksonRequestBodyConverter(type, methodAnnotations);
     }
 
-    private JacksonConverter createConverter(Annotation[] annotations){
+    private DefaultConverter createConverter(Annotation[] annotations) {
         for (Annotation annotation : annotations) {
             if (annotation instanceof Converter) {
                 try {
@@ -82,18 +61,16 @@ public final class JacksonConverterFactory extends retrofit2.Converter.Factory {
 
         protected final Type type;
         private final Annotation[] methodAnnotations;
-        protected final ObjectMapper mapper;
 
-        private JacksonRequestBodyConverter(Type type, Annotation[] methodAnnotations, ObjectMapper mapper) {
+        private JacksonRequestBodyConverter(Type type, Annotation[] methodAnnotations) {
             this.type = type;
             this.methodAnnotations = methodAnnotations;
-            this.mapper = mapper;
         }
 
         @Override
         public final RequestBody convert(T value) throws IOException {
-            JacksonConverter converter = createConverter(methodAnnotations);
-            byte[] bytes = converter.request(mapper,type,value);
+            DefaultConverter converter = createConverter(methodAnnotations);
+            byte[] bytes = converter.request(objectMapper, type, value);
             return RequestBody.create(MEDIA_TYPE, bytes);
         }
 
@@ -102,19 +79,17 @@ public final class JacksonConverterFactory extends retrofit2.Converter.Factory {
     private class JacksonResponseBodyConverter<T> implements retrofit2.Converter<ResponseBody, T> {
         private final Type type;
         private final Annotation[] annotations;
-        private final ObjectMapper mapper;
 
-        private JacksonResponseBodyConverter(Type type, Annotation[] annotations, ObjectMapper mapper) {
+        private JacksonResponseBodyConverter(Type type, Annotation[] annotations) {
             this.type = type;
             this.annotations = annotations;
-            this.mapper = mapper;
         }
 
         @Override
         public final T convert(ResponseBody value) throws IOException {
-            JacksonConverter converter = createConverter(annotations);
             byte[] bytes = value.bytes();
-            return (T) converter.response(mapper,type,bytes);
+            DefaultConverter converter = createConverter(annotations);
+            return (T) converter.response(objectMapper, type, bytes);
         }
 
     }

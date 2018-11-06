@@ -3,7 +3,7 @@ package com.qq.weixin.api;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.qq.weixin.converter.Converter;
-import com.qq.weixin.converter.JacksonConverter;
+import com.qq.weixin.converter.DefaultConverter;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.POST;
@@ -21,10 +21,10 @@ public interface ShortUrlApi {
     @Converter(ShortUrlConverter.class)
     Call<String> shortUrl(@Body String longUrl, @Query("access_token") String accessToken);
 
-    class ShortUrlConverter extends JacksonConverter<String,String> {
+    class ShortUrlConverter extends DefaultConverter<String,String> {
         @Override
         public byte[] request(ObjectMapper mapper, Type type, String longUrl) throws IOException {
-            return String.format("{\"action\":\"long2short\",\"long_url”:”%s”}",longUrl).getBytes(CHARSET_UTF8);
+            return String.format("{\"action\":\"long2short\",\"long_url”:”%s”}",longUrl).getBytes(charSetEncoding);
         }
 
         @Override

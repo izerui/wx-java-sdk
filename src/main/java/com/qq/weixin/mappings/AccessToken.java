@@ -35,12 +35,12 @@ public class AccessToken implements Serializable {
         this.expiresIn = expiresIn;
     }
 
-    public Long expiresInSeconds() {
-        return expiresIn - ((System.currentTimeMillis() - tokenTimeMillis) / 1000);
+    public Long getTokenTimeMillis() {
+        return tokenTimeMillis;
     }
 
-    public Long expiresInMinites() {
-        return expiresInSeconds() / 60;
+    public void setTokenTimeMillis(Long tokenTimeMillis) {
+        this.tokenTimeMillis = tokenTimeMillis;
     }
 
     @Override

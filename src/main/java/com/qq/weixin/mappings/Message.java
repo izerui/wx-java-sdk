@@ -1,10 +1,7 @@
 
 package com.qq.weixin.mappings;
 
-import com.google.common.base.Joiner;
-
 import java.io.Serializable;
-import java.util.List;
 
 /**
  * Created by serv on 16/4/21.
@@ -61,8 +58,8 @@ public abstract class Message implements Serializable {
         return new MusicMessage(toUser, title, description, musicurl, hqMusicUrl, thumbMediaId);
     }
 
-    public static Message articleNews(String toUser, List<Article> articles) {
-        return new ArticleNewsMessage(toUser, articles);
+    public static Message articleNews(String toUser, String title, String description, String url, String picUrl) {
+        return new ArticleNewsMessage(toUser, new Article(title, description, url, picUrl));
     }
 
     public static Message mediaIdNews(String toUser, String mediaId) {
@@ -173,9 +170,9 @@ public abstract class Message implements Serializable {
 
     public static class ArticleNewsMessage extends Message {
 
-        private List<Article> articles;
+        private Article articles;
 
-        public ArticleNewsMessage(String toUser, List<Article> articles) {
+        public ArticleNewsMessage(String toUser, Article articles) {
             super(toUser);
             this.articles = articles;
         }
@@ -184,7 +181,7 @@ public abstract class Message implements Serializable {
         public String toJson() {
             return String.format("{\"touser\":\"%s\",\"msgtype\":\"news\",\"news\":{\"articles\": [%s]}%s}",
                     toUser,
-                    Joiner.on(",").skipNulls().join(articles),
+                    articles,
                     kfPlaceholder());
         }
     }

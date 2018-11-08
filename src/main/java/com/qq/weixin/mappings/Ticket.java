@@ -43,8 +43,12 @@ public class Ticket implements Serializable {
         this.url = url;
     }
 
+    public String getPicUrl() {
+        return "https://mp.weixin.qq.com/cgi-bin/showqrcode?ticket=" + ticket;
+    }
+
     @Override
     public String toString() {
-        return String.format("Ticket[ticket=%s,expireSeconds=%s,url=%s]",ticket,expireSeconds,url);
+        return String.format("Ticket[ticket=%s,expireSeconds=%s,url=%s,picUrl=%s]", ticket, expireSeconds, url, getPicUrl());
     }
 }

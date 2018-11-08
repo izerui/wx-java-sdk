@@ -1,10 +1,6 @@
 
 package com.qq.weixin.mappings;
 
-import okhttp3.MediaType;
-import okhttp3.MultipartBody;
-import okhttp3.RequestBody;
-
 import java.io.Serializable;
 
 /**
@@ -92,23 +88,6 @@ public class Media implements Serializable {
 
     public void setIntroduction(String introduction) {
         this.introduction = introduction;
-    }
-
-
-    public MultipartBody build() {
-        MultipartBody.Builder builder = new MultipartBody.Builder();
-
-        builder.addFormDataPart("media", this.getFileName(), RequestBody.create(MediaType.parse("application/octet-stream"), this.getData()))
-                .addPart(RequestBody.create(MediaType.parse("text/plain"), String.valueOf(this.getData().length)));
-
-        if (this.getType().equals("video")) {
-            builder.addFormDataPart("description",
-                    String.format("{\"title\":\"%s\",\"introduction\":\"%s\"}",
-                            this.getTitle(), this.getIntroduction()));
-        }
-
-        builder.setType(MultipartBody.FORM);
-        return builder.build();
     }
 
 }

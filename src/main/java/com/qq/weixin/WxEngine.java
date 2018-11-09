@@ -65,15 +65,6 @@ public final class WxEngine {
         }
     }
 
-
-    public ObjectMapper getMapper() {
-        return mapper;
-    }
-
-    public IToken getIToken() {
-        return iToken;
-    }
-
     private void checkErrcode(Response response, String appId) throws IOException {
         BufferedSource source = response.body().source();
         source.request(Long.MAX_VALUE); // Buffer the entire body.
@@ -108,8 +99,7 @@ public final class WxEngine {
     }
 
     private String getToken(String appId) {
-        String token = this.getIToken()
-                .getToken(appId);
+        String token = this.iToken.getToken(appId);
         if (token == null) {
             String secret = this.iToken.getSecret(appId);
             if (secret == null) {

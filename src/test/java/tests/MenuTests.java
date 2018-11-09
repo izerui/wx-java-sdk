@@ -30,13 +30,13 @@ public class MenuTests implements Constants {
     }
 
     @Test
-    public void get() throws IOException {
+    public void get()  {
         List<Menu> buttons = engine.execute(new GetMenusCmd(), appId);
         System.out.println(buttons);
     }
 
     @Test
-    public void delete() throws IOException {
+    public void delete()  {
         Status delete = engine.execute(new DeleteMenusCmd(), appId);
         System.out.println(delete);
     }

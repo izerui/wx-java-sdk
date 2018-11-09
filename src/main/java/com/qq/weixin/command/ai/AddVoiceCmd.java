@@ -2,6 +2,7 @@ package com.qq.weixin.command.ai;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.qq.weixin.command.Cmd;
+import com.qq.weixin.mappings.LangEnum;
 import com.qq.weixin.mappings.VoiceStatus;
 import okhttp3.*;
 
@@ -9,9 +10,9 @@ public class AddVoiceCmd extends Cmd<VoiceStatus> {
 
     private String voiceId;
     private byte[] bytes;
-    private String lang;
+    private LangEnum lang;
 
-    public AddVoiceCmd(String voiceId, byte[] bytes, String lang) {
+    public AddVoiceCmd(String voiceId, byte[] bytes, LangEnum lang) {
         this.voiceId = voiceId;
         this.bytes = bytes;
         this.lang = lang;
@@ -28,7 +29,7 @@ public class AddVoiceCmd extends Cmd<VoiceStatus> {
                 .newBuilder()
                 .addQueryParameter("format", "mp3")
                 .addQueryParameter("voice_id", voiceId)
-                .addQueryParameter("lang", lang)
+                .addQueryParameter("lang", lang.name())
                 .build();
 
         Request request = new Request.Builder()

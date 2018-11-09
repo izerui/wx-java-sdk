@@ -28,4 +28,8 @@ public abstract class Cmd<T> {
     public boolean wrapToken() {
         return true;
     }
+
+    public boolean checkErrcode(){
+        return true;
+    }
 }

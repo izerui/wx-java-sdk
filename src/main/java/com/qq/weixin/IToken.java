@@ -42,7 +42,7 @@ public interface IToken {
             String token = tokens.get(appId);
             if (token != null) {
                 Long tokenTime = timeout.get(token);
-                // 超过1个小时
+                // token 有效期1个小时
                 if (System.currentTimeMillis() - tokenTime > 3600000) {
                     deleteToken(appId);
                     return null;

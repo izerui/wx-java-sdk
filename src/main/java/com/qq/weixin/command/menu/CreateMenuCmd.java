@@ -2,6 +2,7 @@ package com.qq.weixin.command.menu;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.qq.weixin.command.Cmd;
+import com.qq.weixin.command.JMap;
 import com.qq.weixin.mappings.Button;
 import com.qq.weixin.mappings.Status;
 import okhttp3.Request;

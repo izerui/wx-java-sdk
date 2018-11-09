@@ -3,6 +3,7 @@ package com.qq.weixin.command.news;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.qq.weixin.command.Cmd;
+import com.qq.weixin.command.JMap;
 import com.qq.weixin.mappings.News;
 import okhttp3.Request;
 import okhttp3.RequestBody;

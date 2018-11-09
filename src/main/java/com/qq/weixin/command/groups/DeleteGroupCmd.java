@@ -2,6 +2,7 @@ package com.qq.weixin.command.groups;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.qq.weixin.command.Cmd;
+import com.qq.weixin.command.JMap;
 import com.qq.weixin.mappings.Status;
 import okhttp3.Request;
 import okhttp3.RequestBody;
@@ -19,7 +20,7 @@ public class DeleteGroupCmd extends Cmd<Status> {
     public Request request(ObjectMapper mapper) throws Exception {
         Request request = new Request.Builder()
                 .url(BASE_URL + "groups/delete")
-                .post(RequestBody.create(JSON_TYPE,JMap.create("group",JMap.create("id",groupId)).writeToBytes(mapper)))
+                .post(RequestBody.create(JSON_TYPE, JMap.create("group",JMap.create("id",groupId)).writeToBytes(mapper)))
                 .build();
         return request;
     }

@@ -2,12 +2,14 @@
 package com.qq.weixin.mappings;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Data;
 
 import java.io.Serializable;
 
 /**
  * Created by serv on 16/4/24.
  */
+@Data
 public class Ticket implements Serializable {
 
     @JsonProperty("ticket")
@@ -19,36 +21,8 @@ public class Ticket implements Serializable {
     @JsonProperty("url")
     private String url;
 
-    public String getTicket() {
-        return ticket;
-    }
-
-    public void setTicket(String ticket) {
-        this.ticket = ticket;
-    }
-
-    public Integer getExpireSeconds() {
-        return expireSeconds;
-    }
-
-    public void setExpireSeconds(Integer expireSeconds) {
-        this.expireSeconds = expireSeconds;
-    }
-
-    public String getUrl() {
-        return url;
-    }
-
-    public void setUrl(String url) {
-        this.url = url;
-    }
-
     public String getPicUrl() {
         return "https://mp.weixin.qq.com/cgi-bin/showqrcode?ticket=" + ticket;
     }
 
-    @Override
-    public String toString() {
-        return String.format("Ticket[ticket=%s,expireSeconds=%s,url=%s,picUrl=%s]", ticket, expireSeconds, url, getPicUrl());
-    }
 }

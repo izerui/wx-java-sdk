@@ -2,12 +2,14 @@ package com.qq.weixin.mappings;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Data;
 
 import java.io.Serializable;
 
 /**
  * Created by rocky on 2016/5/4.
  */
+@Data
 public class KFSession implements Serializable {
 
     @JsonProperty("kf_account")
@@ -19,27 +21,4 @@ public class KFSession implements Serializable {
     @JsonProperty("password")
     private String passWord;
 
-    public String getKFAccount() {
-        return KFAccount;
-    }
-
-    public void setKFAccount(String KFAccount) {
-        this.KFAccount = KFAccount;
-    }
-
-    public String getNickName() {
-        return nickName;
-    }
-
-    public void setNickName(String nickName) {
-        this.nickName = nickName;
-    }
-
-    public String getPassWord() {
-        return passWord;
-    }
-
-    public void setPassWord(String passWord) {
-        this.passWord = passWord;
-    }
 }

@@ -2,12 +2,14 @@
 package com.qq.weixin.mappings;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Data;
 
 import java.io.Serializable;
 
 /**
  * Created by serv on 16/4/25.
  */
+@Data
 public class MaterialStatus implements Serializable{
 
     @JsonProperty("media_id")
@@ -15,24 +17,4 @@ public class MaterialStatus implements Serializable{
 
     private String url;
 
-    public String getMediaId() {
-        return mediaId;
-    }
-
-    public void setMediaId(String mediaId) {
-        this.mediaId = mediaId;
-    }
-
-    public String getUrl() {
-        return url;
-    }
-
-    public void setUrl(String url) {
-        this.url = url;
-    }
-
-    @Override
-    public String toString() {
-        return String.format("MaterialStatus[mediaId:%s,url:%s]",mediaId,url);
-    }
 }

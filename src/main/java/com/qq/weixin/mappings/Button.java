@@ -2,6 +2,7 @@
 package com.qq.weixin.mappings;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Data;
 
 import java.io.Serializable;
 import java.util.List;
@@ -9,6 +10,7 @@ import java.util.List;
 /**
  * Created by serv on 16/4/19.
  */
+@Data
 public class Button implements Serializable {
 
     @JsonProperty("type")
@@ -24,58 +26,6 @@ public class Button implements Serializable {
     @JsonProperty("sub_button")
     private List<Button> subButton;
 
-    public ButtonType getType() {
-        return type;
-    }
-
-    public void setType(ButtonType type) {
-        this.type = type;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getKey() {
-        return key;
-    }
-
-    public void setKey(String key) {
-        this.key = key;
-    }
-
-    public String getUrl() {
-        return url;
-    }
-
-    public void setUrl(String url) {
-        this.url = url;
-    }
-
-    public String getMediaId() {
-        return mediaId;
-    }
-
-    public void setMediaId(String mediaId) {
-        this.mediaId = mediaId;
-    }
-
-    public List<Button> getSubButton() {
-        return subButton;
-    }
-
-    public void setSubButton(List<Button> subButton) {
-        this.subButton = subButton;
-    }
-
-    @Override
-    public String toString() {
-        return String.format("Button[type=%s,name=%s,key=%s,url=%s,mediaId=%s]",type,name,key,url,mediaId);
-    }
 
     public enum ButtonType {
         /**

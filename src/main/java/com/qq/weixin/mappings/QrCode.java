@@ -2,13 +2,15 @@
 package com.qq.weixin.mappings;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Data;
 
 import java.io.Serializable;
 
 /**
  * Created by serv on 16/4/24.
  */
-public class QrCode implements Serializable{
+@Data
+public class QrCode implements Serializable {
 
     @JsonProperty("expire_seconds")
     private Integer expireSeconds;
@@ -19,16 +21,17 @@ public class QrCode implements Serializable{
     @JsonProperty("action_info")
     private ActionInfo actionInfo;
 
-    public static QrCode timeout(Integer expireSeconds, Integer sceneId){
-        return new QrCode(expireSeconds,sceneId);
+    public static QrCode timeout(Integer expireSeconds, Integer sceneId) {
+        return new QrCode(expireSeconds, sceneId);
     }
 
-    public static QrCode forever(String sceneStr){
+    public static QrCode forever(String sceneStr) {
         return new QrCode(sceneStr);
     }
 
     /**
      * 临时二维码
+     *
      * @param expireSeconds
      * @param sceneId
      */
@@ -40,6 +43,7 @@ public class QrCode implements Serializable{
 
     /**
      * 永久二维码
+     *
      * @param sceneStr
      */
     private QrCode(String sceneStr) {
@@ -47,24 +51,8 @@ public class QrCode implements Serializable{
         this.actionInfo = new ActionInfo(sceneStr);
     }
 
-    public Integer getExpireSeconds() {
-        return expireSeconds;
-    }
-
-    public String getActionName() {
-        return actionName;
-    }
-
-    public Integer getSceneId(){
-        return actionInfo.scene.sceneId;
-    }
-
-    public String getSceneStr(){
-        return actionInfo.scene.sceneStr;
-    }
-
-
-    private class ActionInfo implements Serializable{
+    @Data
+    private class ActionInfo implements Serializable {
 
         @JsonProperty("scene")
         private Scene scene;
@@ -79,7 +67,8 @@ public class QrCode implements Serializable{
             this.scene = new Scene(sceneStr);
         }
 
-        private class Scene implements Serializable{
+        @Data
+        private class Scene implements Serializable {
 
             @JsonProperty("scene_id")
             private Integer sceneId;

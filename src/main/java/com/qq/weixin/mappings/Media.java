@@ -1,11 +1,14 @@
 
 package com.qq.weixin.mappings;
 
+import lombok.Data;
+
 import java.io.Serializable;
 
 /**
  * Created by serv on 16/4/25.
  */
+@Data
 public class Media implements Serializable {
 
     private String fileName;
@@ -47,47 +50,6 @@ public class Media implements Serializable {
 
     public static Media video(String fileName, String title, String introduction, byte[] data) {
         return new Media(fileName, title, introduction, data);
-    }
-
-
-    public String getFileName() {
-        return fileName;
-    }
-
-    public void setFileName(String fileName) {
-        this.fileName = fileName;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    public byte[] getData() {
-        return data;
-    }
-
-    public void setData(byte[] data) {
-        this.data = data;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getIntroduction() {
-        return introduction;
-    }
-
-    public void setIntroduction(String introduction) {
-        this.introduction = introduction;
     }
 
 }

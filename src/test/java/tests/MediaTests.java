@@ -24,8 +24,8 @@ public class MediaTests implements Constants {
 
     @Test
     public void uploadVioce() throws IOException {
-        File file = new File("/www/window_min.mp3");
-        Media media = Media.voice("window_min.mp3", Files.readAllBytes(file.toPath()));
+        File file = new File("/www/aaaaa.mp3");
+        Media media = Media.voice("aaaaa.mp3", Files.readAllBytes(file.toPath()));
         MediaStatus status = engine.execute(new UploadMediaCmd(media), appId);
         System.out.println(status);
     }

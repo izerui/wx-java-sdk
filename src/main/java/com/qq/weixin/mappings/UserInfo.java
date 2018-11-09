@@ -2,6 +2,7 @@
 package com.qq.weixin.mappings;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Data;
 
 import java.io.Serializable;
 import java.util.List;
@@ -9,7 +10,8 @@ import java.util.List;
 /**
  * Created by serv on 2014/7/28.
  */
-public class UserInfo implements Serializable{
+@Data
+public class UserInfo implements Serializable {
     /**
      * 用户是否订阅该公众号标识，值为0时，代表此用户没有关注该公众号，拉取不到其余信息。
      */
@@ -94,8 +96,6 @@ public class UserInfo implements Serializable{
     @JsonProperty("qr_scene_str")
     private String qrSceneStr;
 
-
-
     /**
      * 用户特权信息，json 数组，如微信沃卡用户为（chinaunicom）
      */
@@ -108,172 +108,4 @@ public class UserInfo implements Serializable{
      */
     private String kissTime;
 
-    public Integer getSubscribe() {
-        return subscribe;
-    }
-
-    public void setSubscribe(Integer subscribe) {
-        this.subscribe = subscribe;
-    }
-
-    public String getOpenId() {
-        return openId;
-    }
-
-    public void setOpenId(String openId) {
-        this.openId = openId;
-    }
-
-    public String getNickName() {
-        return nickName;
-    }
-
-    public void setNickName(String nickName) {
-        this.nickName = nickName;
-    }
-
-    public Integer getSex() {
-        return sex;
-    }
-
-    public void setSex(Integer sex) {
-        this.sex = sex;
-    }
-
-    public String getLanguage() {
-        return language;
-    }
-
-    public void setLanguage(String language) {
-        this.language = language;
-    }
-
-    public String getCity() {
-        return city;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
-    }
-
-    public String getProvince() {
-        return province;
-    }
-
-    public void setProvince(String province) {
-        this.province = province;
-    }
-
-    public String getCountry() {
-        return country;
-    }
-
-    public void setCountry(String country) {
-        this.country = country;
-    }
-
-    public String getHeadImgUrl() {
-        return headImgUrl;
-    }
-
-    public void setHeadImgUrl(String headImgUrl) {
-        this.headImgUrl = headImgUrl;
-    }
-
-    public Long getSubscribeTime() {
-        return subscribeTime;
-    }
-
-    public void setSubscribeTime(Long subscribeTime) {
-        this.subscribeTime = subscribeTime;
-    }
-
-    public String getUnionId() {
-        return unionId;
-    }
-
-    public void setUnionId(String unionId) {
-        this.unionId = unionId;
-    }
-
-    public String getRemark() {
-        return remark;
-    }
-
-    public void setRemark(String remark) {
-        this.remark = remark;
-    }
-
-    public String getAppId() {
-        return appId;
-    }
-
-    public void setAppId(String appId) {
-        this.appId = appId;
-    }
-
-    public List<String> getPrivilege() {
-        return privilege;
-    }
-
-    public void setPrivilege(List<String> privilege) {
-        this.privilege = privilege;
-    }
-
-    public String getKissTime() {
-        return kissTime;
-    }
-
-    public void setKissTime(String kissTime) {
-        this.kissTime = kissTime;
-    }
-
-    public Integer getGroupId() {
-        return groupId;
-    }
-
-    public void setGroupId(Integer groupId) {
-        this.groupId = groupId;
-    }
-
-    public List<Integer> getTagidList() {
-        return tagidList;
-    }
-
-    public void setTagidList(List<Integer> tagidList) {
-        this.tagidList = tagidList;
-    }
-
-    public String getSubscribeScene() {
-        return subscribeScene;
-    }
-
-    public void setSubscribeScene(String subscribeScene) {
-        this.subscribeScene = subscribeScene;
-    }
-
-    public Integer getQrScene() {
-        return qrScene;
-    }
-
-    public void setQrScene(Integer qrScene) {
-        this.qrScene = qrScene;
-    }
-
-    public String getQrSceneStr() {
-        return qrSceneStr;
-    }
-
-    public void setQrSceneStr(String qrSceneStr) {
-        this.qrSceneStr = qrSceneStr;
-    }
-
-    @Override
-    public String toString() {
-        return String.format("UserInfo[subscribe=%s,openId=%s,nickName=%s,sex=%s," +
-                "language=%s,city=%s,province=%s,country=%s,headImgUrl=%s," +
-                "subscribeTime=%s,unionId=%s,remark=%s,groupId=%s,privilege=%s,appId=%s]",
-                subscribe,openId,nickName,sex,language,city,province,country,headImgUrl,
-                subscribeTime,unionId,remark,groupId,privilege,appId);
-    }
 }

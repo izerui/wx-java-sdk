@@ -2,12 +2,14 @@
 package com.qq.weixin.mappings;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Data;
 
 import java.io.Serializable;
 
 /**
  * Created by serv on 16/4/23.
  */
+@Data
 public class ArrayUser implements Serializable {
 
     @JsonProperty("openid_list")
@@ -21,19 +23,4 @@ public class ArrayUser implements Serializable {
         this.openidList = openidList;
     }
 
-    public String[] getOpenidList() {
-        return openidList;
-    }
-
-    public void setOpenidList(String[] openidList) {
-        this.openidList = openidList;
-    }
-
-    public Integer getToGroupId() {
-        return toGroupId;
-    }
-
-    public void setToGroupId(Integer toGroupId) {
-        this.toGroupId = toGroupId;
-    }
 }

@@ -23,7 +23,7 @@
 
 demo:
 ```
-private IToken token = new IToken.DefaultMapToken();
+private IToken token = new RedisToken();
 private WxEngine engine = new WxEngine(token);
 
 public void sendMsg(){

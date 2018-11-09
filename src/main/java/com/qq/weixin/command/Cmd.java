@@ -29,6 +29,7 @@ public abstract class Cmd<T> {
         return true;
     }
 
+    // 是否执行response返回前,检查errcode
     public boolean checkErrcode(){
         return true;
     }

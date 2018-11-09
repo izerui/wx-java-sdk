@@ -9,7 +9,6 @@ import okhttp3.Response;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
 
 public abstract class Cmd<T> {
 
@@ -25,10 +24,9 @@ public abstract class Cmd<T> {
         return mapper.getTypeFactory().constructCollectionType(ArrayList.class, tclass);
     }
 
-    protected Map<String, Object> node(String key, Object value) {
-        Map<String, Object> jMap = new HashMap<>();
-        jMap.put(key, value);
-        return jMap;
+    // 是否需要附带accessToken
+    public boolean wrapToken() {
+        return true;
     }
 
     public static class JMap extends HashMap<String, Object> {
@@ -39,7 +37,7 @@ public abstract class Cmd<T> {
 
         public static JMap create(String key, Object value) {
             JMap jMap = new JMap();
-            jMap.node(key,value);
+            jMap.node(key, value);
             return jMap;
         }
 

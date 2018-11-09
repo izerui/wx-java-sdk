@@ -20,6 +20,11 @@ public class TokenCmd extends Cmd<AccessToken> {
     }
 
     @Override
+    public boolean wrapToken() {
+        return false;
+    }
+
+    @Override
     public Request request(ObjectMapper mapper) throws Exception {
         FormBody formBody = new FormBody.Builder()
                 .add("grant_type", "client_credential")

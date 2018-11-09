@@ -3,8 +3,10 @@ package com.qq.weixin;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.qq.weixin.command.Cmd;
+import com.qq.weixin.command.token.TokenCmd;
 import com.qq.weixin.interceptor.ErrorInterceptor;
-import com.qq.weixin.interceptor.TokenInterceptor;
+import com.qq.weixin.mappings.AccessToken;
+import okhttp3.HttpUrl;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -29,14 +31,10 @@ public final class WxEngine {
         this.wrapInterceptors();
     }
 
-    // 包装client 的 token拦截器和错误码拦截器
+    // 包装client 的拦截器
     private void wrapInterceptors() {
         OkHttpClient.Builder builder = client.newBuilder();
-        long tokenCount = builder.interceptors().stream().filter(interceptor -> interceptor instanceof TokenInterceptor).count();
         long errCount = builder.interceptors().stream().filter(interceptor -> interceptor instanceof ErrorInterceptor).count();
-        if (tokenCount == 0L) {
-            builder.addInterceptor(new TokenInterceptor(this));
-        }
         if (errCount == 0L) {
             builder.addInterceptor(new ErrorInterceptor(this));
         }
@@ -44,7 +42,7 @@ public final class WxEngine {
     }
 
     /**
-     * 执行微信接口调用
+     * 执行微信公众平台接口调用
      *
      * @param command 调用命令
      * @param appId   要使用的公众号的appId
@@ -53,11 +51,7 @@ public final class WxEngine {
      */
     public <T> T execute(Cmd<T> command, String appId) {
         try {
-            Request request = command
-                    .request(mapper)
-                    .newBuilder()
-                    .tag(appId)
-                    .build();
+            Request request = this.wrapToken(command, appId);
             Response response = client.newCall(request).execute();
             if (response.isSuccessful()) {
                 return command.response(mapper, response);
@@ -72,12 +66,40 @@ public final class WxEngine {
         }
     }
 
+
     public ObjectMapper getMapper() {
         return mapper;
     }
 
     public IToken getIToken() {
         return iToken;
+    }
+
+    private Request wrapToken(Cmd command, String appId) throws Exception {
+        Request request = command.request(mapper);
+        if (command.wrapToken()) {
+            HttpUrl url = HttpUrl.get(request.url().url())
+                    .newBuilder()
+                    .addQueryParameter("access_token", getToken(appId))
+                    .build();
+            request = request.newBuilder().url(url).build();
+        }
+        return request;
+    }
+
+    private String getToken(String appId) {
+        String token = this.getIToken()
+                .getToken(appId);
+        if (token == null) {
+            String secret = this.iToken.getSecret(appId);
+            if (secret == null) {
+                throw new WxException("-20002", "未找到appId和secret相关配置");
+            }
+            AccessToken accessToken = this.execute(new TokenCmd(appId, secret), appId);
+            this.iToken.updateToken(appId, accessToken);
+            return accessToken.getAccessToken();
+        }
+        return token;
     }
 
 }

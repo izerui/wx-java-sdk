@@ -8,10 +8,9 @@ import org.junit.Test;
 
 public class KfTests implements Constants {
 
-    protected WxEngine engine = new WxEngine(
-            new IToken.DefaultMapToken() {{
-                setSecret(appId, appSecret);
-            }});
+    private IToken token = new IToken.DefaultMapToken();
+
+    private WxEngine engine = new WxEngine(token);
 
     @Test
     public void addKf() {

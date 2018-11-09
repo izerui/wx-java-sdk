@@ -1,16 +1,10 @@
 package tests;
 
-import com.qq.weixin.IToken;
-import com.qq.weixin.WxEngine;
 import com.qq.weixin.command.kf.AddKfCmd;
 import com.qq.weixin.mappings.KFSession;
 import org.junit.Test;
 
 public class KfTests implements Constants {
-
-    private IToken token = new IToken.DefaultMapToken();
-
-    private WxEngine engine = new WxEngine(token);
 
     @Test
     public void addKf() {

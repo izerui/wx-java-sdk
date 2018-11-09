@@ -1,16 +1,11 @@
 package tests;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.qq.weixin.IToken;
-import com.qq.weixin.WxEngine;
 import com.qq.weixin.command.media.AddMaterialCmd;
 import com.qq.weixin.command.media.UploadImgCmd;
 import com.qq.weixin.command.media.UploadMediaCmd;
 import com.qq.weixin.mappings.MaterialStatus;
 import com.qq.weixin.mappings.Media;
 import com.qq.weixin.mappings.MediaStatus;
-import okhttp3.OkHttpClient;
-import okhttp3.logging.HttpLoggingInterceptor;
 import org.junit.Test;
 
 import java.io.File;
@@ -18,15 +13,6 @@ import java.io.IOException;
 import java.nio.file.Files;
 
 public class MediaTests implements Constants {
-
-    protected WxEngine engine = new WxEngine(
-            new ObjectMapper(),
-            new OkHttpClient.Builder()
-                    .addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
-                    .build(),
-            new IToken.DefaultMapToken() {{
-                setSecret(appId, appSecret);
-            }});
 
     @Test
     public void upload() throws IOException {

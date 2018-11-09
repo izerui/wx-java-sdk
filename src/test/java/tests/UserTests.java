@@ -1,11 +1,10 @@
 package tests;
 
-import com.qq.weixin.IToken;
-import com.qq.weixin.WxEngine;
 import com.qq.weixin.command.users.GetGroupIdCmd;
 import com.qq.weixin.command.users.GetUserInfoCmd;
 import com.qq.weixin.command.users.GetUsersCmd;
-import com.qq.weixin.mappings.*;
+import com.qq.weixin.mappings.UserInfo;
+import com.qq.weixin.mappings.Users;
 import org.junit.Test;
 
 import java.io.IOException;
@@ -15,19 +14,14 @@ import java.io.IOException;
  */
 public class UserTests implements Constants {
 
-    protected WxEngine engine = new WxEngine(
-            new IToken.DefaultMapToken() {{
-                setSecret(appId, appSecret);
-            }});
-
     @Test
-    public void getUsers() throws IOException {
+    public void getUsers() {
         Users users = engine.execute(new GetUsersCmd(), appId);
         System.out.println(users);
     }
 
     @Test
-    public void getGroupId(){
+    public void getGroupId() {
         Integer execute = engine.execute(new GetGroupIdCmd("oTDoKtyOsM5Eo7AIVTidlm6nXHtA"), appId);
         System.out.println(execute);
     }

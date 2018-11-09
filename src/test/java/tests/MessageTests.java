@@ -1,30 +1,14 @@
 package tests;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.qq.weixin.IToken;
-import com.qq.weixin.WxEngine;
 import com.qq.weixin.command.message.SendMessageCmd;
 import com.qq.weixin.mappings.Message;
 import com.qq.weixin.mappings.Status;
-import okhttp3.OkHttpClient;
-import okhttp3.logging.HttpLoggingInterceptor;
 import org.junit.Test;
-
-import java.io.IOException;
 
 public class MessageTests implements Constants {
 
-    protected WxEngine engine = new WxEngine(
-            new ObjectMapper(),
-            new OkHttpClient.Builder()
-                    .addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
-                    .build(),
-            new IToken.DefaultMapToken() {{
-                setSecret(appId, appSecret);
-            }});
-
     @Test
-    public void send() throws IOException {
+    public void send() {
         String user = "oTDoKt-0csI5Phsl1TqpUiBKm_cw";
 
         Status status = engine.execute(new SendMessageCmd(Message.text(user, "textMessage").withKfAccount("ssss")), appId);

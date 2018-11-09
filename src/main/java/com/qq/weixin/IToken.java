@@ -10,9 +10,6 @@ public interface IToken {
     // 获取appId对应的secret秘钥
     String getSecret(String appId);
 
-    // 设置appId对应的秘钥
-    String setSecret(String appId, String secret);
-
     // 获取token
     String getToken(String appId);
 
@@ -35,6 +32,10 @@ public interface IToken {
         // key: token
         // value: 时间戳
         private Map<String, Long> timeout = new HashMap<>();
+
+        public DefaultMapToken(Map<String,String> appSecretsMap) {
+            configs.putAll(appSecretsMap);
+        }
 
         @Override
         public String getToken(String appId) {
@@ -68,9 +69,5 @@ public interface IToken {
             return configs.get(appId);
         }
 
-        @Override
-        public String setSecret(String appId, String secret) {
-            return configs.put(appId, secret);
-        }
     }
 }

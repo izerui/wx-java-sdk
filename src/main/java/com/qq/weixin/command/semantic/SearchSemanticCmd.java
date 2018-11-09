@@ -7,7 +7,7 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
-public class SearchSemanticCmd extends Cmd<String> {
+public class SearchSemanticCmd implements Cmd<String> {
 
     private Semantic semantic;
 

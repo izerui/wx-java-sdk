@@ -11,7 +11,7 @@ import okhttp3.Response;
 import java.util.ArrayList;
 import java.util.List;
 
-public class GetGroupsCmd extends Cmd<List<Group>> {
+public class GetGroupsCmd implements Cmd<List<Group>> {
 
     @Override
     public Request request(ObjectMapper mapper) throws Exception {

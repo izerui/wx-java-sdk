@@ -11,7 +11,7 @@ import okhttp3.Response;
 
 import java.util.List;
 
-public class AddNewsCmd extends Cmd<String> {
+public class AddNewsCmd implements Cmd<String> {
 
     private List<News> newses;
 

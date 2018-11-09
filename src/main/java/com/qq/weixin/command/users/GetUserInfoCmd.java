@@ -7,7 +7,7 @@ import okhttp3.HttpUrl;
 import okhttp3.Request;
 import okhttp3.Response;
 
-public class GetUserInfoCmd extends Cmd<UserInfo> {
+public class GetUserInfoCmd implements Cmd<UserInfo> {
 
     private String openId;
 

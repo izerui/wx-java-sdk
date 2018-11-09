@@ -9,7 +9,7 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
-public class GetVoiceResultCmd extends Cmd<String> {
+public class GetVoiceResultCmd implements Cmd<String> {
 
     private String voiceId;
     private LangEnum lang;

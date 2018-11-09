@@ -6,7 +6,7 @@ import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 
-public abstract class BaseUploadCmd<T> extends Cmd<T> {
+public abstract class BaseUploadCmd<T> implements Cmd<T> {
 
     protected MultipartBody getMultipartBody(Media media) {
         MultipartBody.Builder builder = new MultipartBody.Builder();

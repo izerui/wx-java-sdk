@@ -7,7 +7,7 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
-public class GetGroupIdCmd extends Cmd<Integer> {
+public class GetGroupIdCmd implements Cmd<Integer> {
 
     private String openId;
 

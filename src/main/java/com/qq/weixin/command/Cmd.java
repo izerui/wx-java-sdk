@@ -6,31 +6,31 @@ import okhttp3.MediaType;
 import okhttp3.Request;
 import okhttp3.Response;
 
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 
-public abstract class Cmd<T> {
+public interface Cmd<T> {
 
-    public final static MediaType JSON_TYPE = MediaType.parse("application/json;charset=utf-8");
+    MediaType JSON_TYPE = MediaType.parse("application/json;charset=utf-8");
 
-    public final static String BASE_URL = "https://api.weixin.qq.com/cgi-bin/";
+    MediaType TEXT_TYPE = MediaType.parse("text/plain;charset=utf-8");
 
-    public abstract Request request(ObjectMapper mapper) throws Exception;
+    String BASE_URL = "https://api.weixin.qq.com/cgi-bin/";
 
-    public abstract T response(ObjectMapper mapper, Response response) throws Exception;
+    Request request(ObjectMapper mapper) throws Exception;
 
-    protected CollectionType getCollectionType(ObjectMapper mapper, Class tclass) {
+    T response(ObjectMapper mapper, Response response) throws Exception;
+
+    default CollectionType getCollectionType(ObjectMapper mapper, Class tclass) {
         return mapper.getTypeFactory().constructCollectionType(ArrayList.class, tclass);
     }
 
     // 是否需要附带accessToken
-    public boolean wrapToken() {
+    default boolean wrapToken() {
         return true;
     }
 
     // 是否执行response返回前,检查errcode
-    public boolean checkErrcode(){
+    default boolean checkErrcode() {
         return true;
     }
 }

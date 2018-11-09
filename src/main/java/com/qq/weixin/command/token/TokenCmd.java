@@ -9,7 +9,7 @@ import okhttp3.Response;
 
 import java.io.IOException;
 
-public class TokenCmd extends Cmd<AccessToken> {
+public class TokenCmd implements Cmd<AccessToken> {
 
     private String appid;
     private String secret;

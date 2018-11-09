@@ -8,7 +8,7 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
-public class UpdateGroupCmd extends Cmd<Status> {
+public class UpdateGroupCmd implements Cmd<Status> {
 
     private Group group;
 

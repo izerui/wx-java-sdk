@@ -6,7 +6,7 @@ import com.qq.weixin.mappings.LangEnum;
 import com.qq.weixin.mappings.VoiceStatus;
 import okhttp3.*;
 
-public class AddVoiceCmd extends Cmd<VoiceStatus> {
+public class AddVoiceCmd implements Cmd<VoiceStatus> {
 
     private String voiceId;
     private byte[] bytes;

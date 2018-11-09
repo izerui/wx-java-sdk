@@ -8,7 +8,7 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
-public class AddKfCmd extends Cmd<Status> {
+public class AddKfCmd implements Cmd<Status> {
 
     private KFSession kfSession;
 

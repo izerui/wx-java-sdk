@@ -11,7 +11,7 @@ import okhttp3.Response;
 
 import java.util.List;
 
-public class CreateMenuCmd extends Cmd<Status> {
+public class CreateMenuCmd implements Cmd<Status> {
 
     private List<Button> buttons;
 

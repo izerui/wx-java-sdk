@@ -6,7 +6,7 @@ import com.qq.weixin.mappings.Status;
 import okhttp3.Request;
 import okhttp3.Response;
 
-public class DeleteMenusCmd extends Cmd<Status> {
+public class DeleteMenusCmd implements Cmd<Status> {
     @Override
     public Request request(ObjectMapper mapper) throws Exception {
         Request request = new Request.Builder()

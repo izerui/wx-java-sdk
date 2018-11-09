@@ -8,7 +8,7 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
-public class SendMessageCmd extends Cmd<Status> {
+public class SendMessageCmd implements Cmd<Status> {
 
     private Message message;
 

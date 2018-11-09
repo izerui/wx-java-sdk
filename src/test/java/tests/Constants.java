@@ -27,7 +27,7 @@ public interface Constants {
     WxEngine engine = new WxEngine(
             new ObjectMapper(),
             new OkHttpClient.Builder()
-                    .addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
+                    .addInterceptor(new HttpLoggingInterceptor(s -> System.out.println(s)).setLevel(HttpLoggingInterceptor.Level.BODY))
                     .build(),
             token);
 }

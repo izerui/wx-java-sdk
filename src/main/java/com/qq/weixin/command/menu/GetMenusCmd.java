@@ -10,7 +10,7 @@ import okhttp3.Response;
 import java.util.ArrayList;
 import java.util.List;
 
-public class GetMenusCmd extends Cmd<List<Menu>> {
+public class GetMenusCmd implements Cmd<List<Menu>> {
     @Override
     public Request request(ObjectMapper mapper) throws Exception {
         Request request = new Request.Builder()

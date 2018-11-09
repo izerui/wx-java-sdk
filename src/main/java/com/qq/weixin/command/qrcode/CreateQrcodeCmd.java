@@ -9,7 +9,7 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
-public class CreateQrcodeCmd extends Cmd<Ticket> {
+public class CreateQrcodeCmd implements Cmd<Ticket> {
 
     private QrCode qrCode;
 

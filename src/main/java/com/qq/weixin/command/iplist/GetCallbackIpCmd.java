@@ -7,7 +7,7 @@ import okhttp3.Response;
 
 import java.util.List;
 
-public class GetCallbackIpCmd extends Cmd<List<String>> {
+public class GetCallbackIpCmd implements Cmd<List<String>> {
     @Override
     public Request request(ObjectMapper mapper) throws Exception {
         Request request = new Request.Builder()

@@ -21,7 +21,7 @@ public class ShortUrlCmd implements Cmd<String> {
         Request request = new Request.Builder()
                 .url(BASE_URL + "shorturl")
                 .post(RequestBody.create(JSON_TYPE, JMap.create("action", "long2short")
-                        .node("long_url", longUrl).writeToBytes(mapper)))
+                        .put("long_url", longUrl).writeToBytes(mapper)))
                 .build();
         return request;
     }

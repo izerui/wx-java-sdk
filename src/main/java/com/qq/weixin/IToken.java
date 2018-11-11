@@ -23,11 +23,11 @@ public interface IToken {
 
         // key: appId
         // value: secret
-        protected Map<String, String> configs = new HashMap<>();
+        private Map<String, String> configs = new HashMap<>();
 
         // key: appId
         // value: token
-        protected Map<String, String> tokens = new HashMap<>();
+        private Map<String, String> tokens = new HashMap<>();
 
         // key: token
         // value: 时间戳

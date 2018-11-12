@@ -2,6 +2,7 @@
 package tests;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.qq.weixin.DefaultMapToken;
 import com.qq.weixin.IToken;
 import com.qq.weixin.WxEngine;
 import okhttp3.OkHttpClient;
@@ -22,7 +23,7 @@ public interface Constants {
         // ...放入更多的appId和秘钥
     }};
 
-    IToken token = new IToken.DefaultMapToken(apps);
+    IToken token = new DefaultMapToken(apps);
 
     WxEngine engine = new WxEngine(
             new ObjectMapper(),

@@ -51,6 +51,19 @@
     </dependencies>
 
 
+    <distributionManagement>
+        <repository>
+            <id>releases-pia</id>
+            <name>Nexus Release Repository</name>
+            <url>http://mgr.tongxuepie.com/nexus/content/repositories/releases/</url>
+        </repository>
+        <snapshotRepository>
+            <id>snapshots-pia</id>
+            <name>Nexus Snapshot Repository</name>
+            <url>http://mgr.tongxuepie.com/nexus/content/repositories/snapshots/</url>
+        </snapshotRepository>
+    </distributionManagement>
+
 
     <build>
         <plugins>

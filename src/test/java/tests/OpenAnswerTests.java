@@ -13,7 +13,7 @@ import java.util.concurrent.atomic.AtomicReference;
 
 public class OpenAnswerTests {
 
-    private String cookie = "up_page_stime_100200=1556374428156; up_beacon_vist_count_100200=7; isGuide=false; up_page_stime_100200=1556375651839; up_beacon_vist_count_100200=11; __jsluid=9cffe1ef29a0a850b4a18d05dd8fa072; radius=14.103.74.214; up_page_stime_100200=1556371496395; up_beacon_vist_count_100200=1; b_t_s_100200=78b1f00f-e9ce-4cd6-97ce-ae1a629ba30d; up_first_date=2019-04-27; up_beacon_id_100200=78b1f00f-e9ce-4cd6-97ce-ae1a629ba30d-1556371496400; Hm_lvt_686401bd1a1f7184252b460af0f4337e=1556371497; _fmdata=mPuQrGes5pmQPed4qaKeqIQ%2BAyuk45tuOozCd1SHh7eK2X2NVKpu4oUQeTz1Wshl9MM%2FxzZtEaaAfS8i2NxTkw0XAoJD5JwBQe4yjCw4bss%3D; ASP.NET_SessionId=onjabolbbekfw4lynihrn3la; up_beacon_user_id_100200=liuyhopen1903; up_beacon_uni_id_100200=10004; NTKF_T2D_CLIENTID=guestCE6386B8-57AC-B609-86B9-5F2EFA8B310C; nTalk_CACHE_DATA={uid:kf_10225_ISME9754_guestCE6386B8-57AC-B6,tid:1556375075466241}; Hm_lvt_946766664d58c814a94301842a7a73fb=1556375076; Hm_lpvt_946766664d58c814a94301842a7a73fb=1556375076; badu=idu; Hm_lpvt_686401bd1a1f7184252b460af0f4337e=1556375669";
+    private String cookie = "up_page_stime_100200=1556389806023; up_beacon_vist_count_100200=14; isGuide=false; up_page_stime_100200=1556422248487; up_beacon_vist_count_100200=41; __jsluid=9cffe1ef29a0a850b4a18d05dd8fa072; radius=14.103.74.214; b_t_s_100200=78b1f00f-e9ce-4cd6-97ce-ae1a629ba30d; up_first_date=2019-04-27; up_beacon_id_100200=78b1f00f-e9ce-4cd6-97ce-ae1a629ba30d-1556371496400; Hm_lvt_686401bd1a1f7184252b460af0f4337e=1556371497; ASP.NET_SessionId=onjabolbbekfw4lynihrn3la; up_beacon_user_id_100200=liuyhopen1903; up_beacon_uni_id_100200=10004; NTKF_T2D_CLIENTID=guestCE6386B8-57AC-B609-86B9-5F2EFA8B310C; nTalk_CACHE_DATA={uid:kf_10225_ISME9754_guestCE6386B8-57AC-B6,tid:1556375075466241}; Hm_lvt_946766664d58c814a94301842a7a73fb=1556375076; b_t_s_test=bc66004f-9d0d-4920-8010-4c77c007f9e0; Hm_lpvt_946766664d58c814a94301842a7a73fb=1556388990; up_page_stime_100200=1556422206698; up_beacon_vist_count_100200=2; _fmdata=mPuQrGes5pmQPed4qaKeqIQ%2BAyuk45tuOozCd1SHh7eK2X2NVKpu4oUQeTz1WshlEaroPB9SDOSrn7BpEK5OpoxxYAwWjYK4putdlMuqLZE%3D; Hm_lpvt_686401bd1a1f7184252b460af0f4337e=1556422278";
 
     // get 该地方返回所有作业列表
     // http://learn.open.com.cn/StudentCenter/MyWork/GetOnlineJsonAll?t=0.2601177278482374
@@ -25,10 +25,13 @@ public class OpenAnswerTests {
 //    private String testPaper = "http://learn.open.com.cn/StudentCenter/OnlineJob/DoHomework?courseExerciseId=0&key=d7bbb0aefb0bc5f6&studentHomeworkId=b93a771e-f2b4-4680-8bc5-397f11429667&_=1556386233016";
 
     // 计算机2
-    private String testPaper = "http://learn.open.com.cn/StudentCenter/OnlineJob/DoHomework?courseExerciseId=0&key=7b265f5841adbdd9&studentHomeworkId=fe37f00f-3d35-4c90-ada9-fcd55e488b62&_=1556387530051";
+//    private String testPaper = "http://learn.open.com.cn/StudentCenter/OnlineJob/DoHomework?courseExerciseId=0&key=7b265f5841adbdd9&studentHomeworkId=fe37f00f-3d35-4c90-ada9-fcd55e488b62&_=1556387530051";
 
-    // 计算机
-//    private String testPaper = "http://learn.open.com.cn/StudentCenter/OnlineJob/DoHomework?courseExerciseId=0&key=3bd53e5e81a1fa9c&studentHomeworkId=006f32f7-c6a2-4863-9283-4ead1791f1ed&_=1556383089886";
+    // 英语2
+//    private String testPaper = "http://learn.open.com.cn/StudentCenter/OnlineJob/DoHomework?courseExerciseId=0&key=568b2ec695484433&studentHomeworkId=dca41117-e0df-487a-9863-2305aed03356&_=1556422278873";
+
+    // 计算机1
+    private String testPaper = "http://learn.open.com.cn/StudentCenter/OnlineJob/DoHomework?courseExerciseId=0&key=3bd53e5e81a1fa9c&studentHomeworkId=006f32f7-c6a2-4863-9283-4ead1791f1ed&_=1556424100027";
 
     //    private String questionId = "ddec230e-8299-46aa-9fcb-b881d3420ba8a";
 //    private String questionId = "qes-4c0893fc-6bfa-4c8c-9952-1781b2b8e132";

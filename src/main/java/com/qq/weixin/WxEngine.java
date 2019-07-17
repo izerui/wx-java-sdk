@@ -98,7 +98,11 @@ public final class WxEngine {
         return request;
     }
 
-    private String getToken(String appId) {
+    public IToken getToken(){
+        return iToken;
+    }
+
+    public String getToken(String appId) {
         String token = this.iToken.getToken(appId);
         if (token == null) {
             String secret = this.iToken.getSecret(appId);
